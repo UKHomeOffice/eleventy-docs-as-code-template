@@ -10,6 +10,7 @@ where you will find the configuration options you should update.
   - [ ] repository
   - [ ] contributors
 - [.eleventy.js](../.eleventy.js)
+  - [ ] `repoName` constant
   - [ ] `xgovukPluginOptions.header.productName`
 - [Index page](../pubs/index.md)
   - [ ] title 

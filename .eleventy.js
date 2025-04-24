@@ -2,6 +2,17 @@ import govukEleventyPlugin from "@x-govuk/govuk-eleventy-plugin";
 
 export default function (eleventyConfig) {
 
+    // The name of the repo as it appears on GitHub
+    const repoName = '';
+
+    const url = process.env.GITHUB_ACTIONS
+        ? `https://ukhomeoffice.github.io/${repoName}/`
+        : '/';
+
+    const pathPrefix = process.env.GITHUB_ACTIONS
+        ? `/${repoName}/`
+        : '/';
+
     eleventyConfig.addPassthroughCopy({ "pubs/assets/logos": "assets/logos"});
 
     const xgovukPluginOptions = {
@@ -31,11 +42,19 @@ export default function (eleventyConfig) {
                 sitemapPath: '/sitemap.html'
             }
         },
+        footer: {
+            copyright: {
+                html: '© <a class="govuk-footer__link" href="https://github.com/UKHomeOffice/'+ repoName +'/blob/main/LICENSE.md">Crown Copyright (Home Office)</a>'
+            },
+        },
+        pathPrefix,
+        url,
     }
 
     eleventyConfig.addPlugin(govukEleventyPlugin, xgovukPluginOptions);
 
     return {
+        pathPrefix,
         dataTemplateEngine: 'njk',
         htmlTemplateEngine: 'njk',
         markdownTemplateEngine: 'njk',
