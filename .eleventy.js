@@ -2,6 +2,31 @@ import govukEleventyPlugin from "@x-govuk/govuk-eleventy-plugin";
 
 export default function (eleventyConfig) {
 
+    // The name of the repo as it appears on GitHub
+    const repoName = '';
+
+    /** TODO: this should be configured to match the url where this site is hosted. 
+      * For example when using a GitHub action to deploy to GitHub pages:
+      * 
+      * ```javascript
+      * const url = process.env.GITHUB_ACTIONS
+      *    ? `https://ukhomeoffice.github.io/${repoName}/`
+      *    : '/';
+      */
+    const url = '/';
+
+    /** TODO: If the site is not hosted in the root of the host domain, this should be 
+      * the path to the root of the site.
+      * 
+      * For example when using a GitHub action to deploy to GitHub pages:
+      * 
+      * ```javascript
+      * const pathPrefix = process.env.GITHUB_ACTIONS
+      *    ? `/${repoName}/`
+      *    : '/';
+      */
+    const pathPrefix = '/';
+
     eleventyConfig.addPassthroughCopy({ "pubs/assets/logos": "assets/logos"});
 
     const xgovukPluginOptions = {
@@ -31,11 +56,19 @@ export default function (eleventyConfig) {
                 sitemapPath: '/sitemap.html'
             }
         },
+        footer: {
+            copyright: {
+                html: '© <a class="govuk-footer__link" href="https://github.com/UKHomeOffice/'+ repoName +'/blob/main/LICENSE.md">Crown Copyright (Home Office)</a>'
+            },
+        },
+        pathPrefix,
+        url,
     }
 
     eleventyConfig.addPlugin(govukEleventyPlugin, xgovukPluginOptions);
 
     return {
+        pathPrefix,
         dataTemplateEngine: 'njk',
         htmlTemplateEngine: 'njk',
         markdownTemplateEngine: 'njk',
