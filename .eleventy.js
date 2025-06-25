@@ -1,13 +1,13 @@
-import govukEleventyPlugin from "@x-govuk/govuk-eleventy-plugin";
+import { govukEleventyPlugin } from '@x-govuk/govuk-eleventy-plugin'
 
 export default function (eleventyConfig) {
 
     // The name of the repo as it appears on GitHub
     const repoName = '';
 
-    /** TODO: this should be configured to match the url where this site is hosted. 
+    /** TODO: this should be configured to match the url where this site is hosted.
       * For example when using a GitHub action to deploy to GitHub pages:
-      * 
+      *
       * ```javascript
       * const url = process.env.GITHUB_ACTIONS
       *    ? `https://ukhomeoffice.github.io/${repoName}/`
@@ -15,11 +15,11 @@ export default function (eleventyConfig) {
       */
     const url = '/';
 
-    /** TODO: If the site is not hosted in the root of the host domain, this should be 
+    /** TODO: If the site is not hosted in the root of the host domain, this should be
       * the path to the root of the site.
-      * 
+      *
       * For example when using a GitHub action to deploy to GitHub pages:
-      * 
+      *
       * ```javascript
       * const pathPrefix = process.env.GITHUB_ACTIONS
       *    ? `/${repoName}/`
@@ -74,9 +74,7 @@ export default function (eleventyConfig) {
         markdownTemplateEngine: 'njk',
         dir: {
             // The folder where all your content will live:
-            input: 'pubs',
-            // Use layouts from the x-govuk plugin
-            layouts: '../node_modules/@x-govuk/govuk-eleventy-plugin/layouts'
+            input: 'pubs'
         }
     }
 }
